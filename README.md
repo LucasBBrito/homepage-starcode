@@ -21,12 +21,12 @@ Agora o código já possui as tags `<img>` prontas. Para alterar as fotos, basta
    ```html
    <img src="ASSETS/fotos-equipe/sua-foto.jpg" alt="Nome do Membro" />
    ```
-   _Nota: O site ajusta automaticamente a foto para preencher a moldura (Portrait 3:4)._
+   _Nota: O site agora utiliza molduras maiores (240x320px). Recomenda--se fotos em proporção retrato 3:4._
 2. **Portfólio**: Localize a tag `<img>` dentro de `.project-screenshot` e altere o `src`:
    ```html
    <img src="ASSETS/seu-projeto.jpg" alt="Nome do Projeto" />
    ```
-   _Nota: O site ajusta automaticamente o print para preencher a área do carrossel._
+   _Nota: A área de destaque foi ajustada para 380px de altura para garantir que o conteúdo caiba em diferentes telas. O site ajusta o print automaticamente para preencher este espaço._\_
 
 ---
 
