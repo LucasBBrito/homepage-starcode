@@ -100,6 +100,23 @@ No arquivo `style.css`, você pode alterar as cores globais no topo do arquivo:
 
 Para trocar a fonte, altere o link do Google Fonts no `<head>` do `index.html` e atualize a variável `--font-main` (se existir) ou a propriedade `font-family` no `body` do `style.css`.
 
+### Ícones e Redes Sociais
+
+O projeto utiliza o **FontAwesome** para os ícones. Os links de redes sociais no footer possuem cores de marca automáticas ao passar o mouse.
+
+**Como alterar os links sociais:**
+
+1. No `index.html`, localize o bloco `<div class="social-links">`.
+2. Altere o `href` de cada rede social:
+   - **WhatsApp**: `https://wa.me/SEUNUMERO`
+   - **LinkedIn**: `https://linkedin.com/in/SEUPERFIL`
+   - **GitHub**: `https://github.com/SEUUSUARIO`
+   - **Instagram**: `https://instagram.com/SEUPERFIL`
+   - **E-mail**: `mailto:seuemail@exemplo.com`
+
+**Como trocar um ícone:**
+Substitua a classe `<i>` dentro do link pelo código do ícone desejado do [FontAwesome](https://fontawesome.com/search). Exemplo: `<i class="fa-brands fa-x-twitter"></i>`.
+
 ---
 
 ## ⚙️ Configurações Técnicas (script.js)
