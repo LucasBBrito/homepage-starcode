@@ -321,7 +321,7 @@ body::before {
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 0; /* Removed padding to allow sections to fill full width/height */
   display: flex;
   position: relative;
   z-index: 1;
@@ -355,6 +355,22 @@ body::before {
    SEÇÃO HOME - Vídeo
    ======================================== */
 
+#home {
+  flex: 1; /* Fill the vertical space of main-content */
+  width: 100%;
+  /* Radial gradient: White center -> Transparent edges (revealing body blue) */
+  /* Changed to ellipse to match video aspect ratio better */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.4) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  min-height: 100%;
+  padding: 2rem; /* Restore padding internal to the section instead of main-content */
+}
+
 .animation-container {
   width: 100%;
   max-width: 1000px; /* Reduced by ~30% from 1400px */
@@ -369,7 +385,8 @@ body::before {
   max-width: 100%; /* Removing 600px limit to fill the larger container */
   height: auto;
   border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(31, 113, 177, 0.2);
+  /* White box-shadow to blur the hard edge into the background */
+  box-shadow: 0 0 50px 50px #ffffff;
   display: block;
 }
 
