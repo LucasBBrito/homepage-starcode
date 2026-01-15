@@ -2,7 +2,7 @@
 
 Este guia orienta como substituir os placeholders por conteúdos reais, gerenciar itens da equipe e do portfólio, e realizar ajustes básicos de estilo.
 
-------
+---
 
 ## 🖼️ Como Gerenciar Imagens
 
@@ -10,19 +10,19 @@ Todas as imagens devem ser colocadas na pasta `ASSETS/`.
 
 ### 1. Logo Oficial
 
-- Substitua `ASSETS/logo.png` pela sua logo oficial.
+- Substitua `ASSETS/logo.png` pela sua logo oficial. (aprox. linha 36 no `index.html`)
 - **Dica**: Utilize o formato PNG com fundo transparente para um visual mais profissional.
 
 ### 2. Fotos da Equipe e Prints de Projetos
 
 Agora o código já possui as tags `<img>` prontas. Para alterar as fotos, basta mudar o caminho no atributo `src`:
 
-1. **Equipe**: No `index.html`, localize a tag `<img>` dentro de `.team-photo` e altere o `src`:
+1. **Equipe**: No `index.html`, localize a tag `<img>` dentro de `.team-photo` (aprox. linha 300) e altere o `src`:
    ```html
    <img src="ASSETS/fotos-equipe/sua-foto.jpg" alt="Nome do Membro" />
    ```
    _Nota: O site agora utiliza molduras maiores (240x320px). Recomenda--se fotos em proporção retrato 3:4._
-2. **Portfólio**: Localize a tag `<img>` dentro de `.project-screenshot` e altere o `src`:
+2. **Portfólio**: Localize a tag `<img>` dentro de `.project-screenshot` (aprox. linha 168) e altere o `src`:
    ```html
    <img src="ASSETS/seu-projeto.jpg" alt="Nome do Projeto" />
    ```
@@ -37,7 +37,7 @@ A seção de equipe é composta por blocos chamados `.team-card` dentro da div `
 ### Como alterar um membro existente:
 
 1. Abra o arquivo `index.html`.
-2. Procure pela seção `<!-- Seção Equipe -->`.
+2. Procure pela seção `<!-- Seção Equipe -->` (aprox. linha 292).
 3. Altere os textos entre as tags:
    - `<h3>`: Nome do colaborador.
    - `<p class="team-role">`: Cargo ou função.
@@ -56,6 +56,31 @@ A seção de equipe é composta por blocos chamados `.team-card` dentro da div `
 
 ---
 
+---
+
+## ⏳ Gerenciando a Seção de Jornada (Timeline)
+
+A timeline mostra a trajetória da empresa, localizada logo após a animação inicial. Ela utiliza uma estrutura que se adapta automaticamente de horizontal (desktop) para vertical (mobile).
+
+### Como alterar um marco da timeline:
+
+1. Abra o arquivo `index.html`.
+2. Procure pela seção `<!-- Timeline Section -->` (aprox. linha 104).
+3. Dentro de cada `.timeline-item`, altere:
+
+- `.timeline-year`: O ano do marco.
+- `<h3>`: O título do marco (ex: "Fundação").
+- `.timeline-text`: A descrição do acontecimento.
+- **Ícones**: Substitua as classes do `<i>` (ex: `fa-solid fa-rocket`) por outros ícones do FontAwesome.
+
+### Como adicionar um novo marco:
+
+1. Copie todo o bloco `.timeline-item` (do começo ao fim da div).
+2. Cole na posição desejada (cronológica) dentro da div `.timeline`.
+3. O layout se ajustará automaticamente.
+
+---
+
 ## 📁 Gerenciando a Seção Portfólio
 
 Os projetos são exibidos em um carrossel. Cada projeto é um bloco `.project-card` dentro de `.carousel-track`.
@@ -63,7 +88,7 @@ Os projetos são exibidos em um carrossel. Cada projeto é um bloco `.project-ca
 ### Como alterar um projeto existente:
 
 1. Abra o arquivo `index.html`.
-2. Procure pela seção `<!-- Seção Portfólio -->`.
+2. Procure pela seção `<!-- Seção Portfólio -->` (aprox. linha 156).
 3. Altere as informações:
    - `<h3>`: Nome do projeto.
    - `<p>`: Descrição curta.
@@ -96,7 +121,7 @@ No arquivo `style.css`, você pode alterar as cores globais no topo do arquivo:
 }
 ```
 
-### Fontes
+### Fontes (aprox. linha 20 no `index.html`)
 
 Para trocar a fonte, altere o link do Google Fonts no `<head>` do `index.html` e atualize a variável `--font-main` (se existir) ou a propriedade `font-family` no `body` do `style.css`.
 
@@ -106,7 +131,7 @@ O projeto utiliza o **FontAwesome** para os ícones. Os links de redes sociais n
 
 **Como alterar os links sociais:**
 
-1. No `index.html`, localize o bloco `<div class="social-links">`.
+1. No `index.html`, localize o bloco `<div class="social-links">` (aprox. linha 365).
 2. Altere o `href` de cada rede social:
    - **WhatsApp**: `https://wa.me/SEUNUMERO`
    - **LinkedIn**: `https://linkedin.com/in/SEUPERFIL`

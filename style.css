@@ -771,6 +771,199 @@ body::before {
   border-color: #ea4335;
 }
 
+/* ========================================
+   SEÇÃO TIMELINE
+   ======================================== */
+#home {
+  /* Allow stacking of Video and Timeline */
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100vh;
+}
+
+#home .animation-container {
+  /* Ensure video container takes appropriate space, maybe full viewport initially */
+  min-height: 90vh; /* Make video dominate the first screen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--cor-secundaria);
+  text-align: center;
+  margin-bottom: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-title::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--cor-terciaria);
+  border-radius: 2px;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+/* Horizontal Line (Desktop) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 70px; /* Aligned with dot center: 2rem padding (32px) + dot top (20px) + half dot (20px) - half line (2px) = 70px */
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(62, 151, 201, 0.2) 0%,
+    var(--cor-primaria) 50%,
+    rgba(62, 151, 201, 0.2) 100%
+  );
+  z-index: 0;
+  border-radius: 4px;
+}
+
+.timeline-item {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  padding-top: 80px; /* Space for dot */
+}
+
+/* Dot */
+.timeline-dot {
+  position: absolute;
+  top: 20px; /* Center at 40px top of container */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 4px solid var(--cor-primaria);
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 0 4px rgba(62, 151, 201, 0.1);
+}
+
+.timeline-dot i {
+  color: var(--cor-primaria);
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  background: var(--cor-primaria);
+  transform: translateX(-50%) scale(1.15);
+  box-shadow: 0 0 0 8px rgba(62, 151, 201, 0.2);
+}
+
+.timeline-item:hover .timeline-dot i {
+  color: white;
+  transform: scale(1.2);
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(31, 113, 177, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--cor-terciaria);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(31, 113, 177, 0.15);
+  border-color: rgba(62, 151, 201, 0.3);
+}
+
+.timeline-item:hover .timeline-content::before {
+  background: var(--cor-primaria);
+  opacity: 1;
+}
+
+.timeline-year {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--cor-secundaria) 0%,
+    var(--cor-primaria) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  display: block;
+  font-family: "Outfit", sans-serif; /* Fallback to sans-serif if Outfit not loaded */
+}
+
+.timeline-text {
+  font-size: 1.05rem;
+  color: #5a6c7f;
+  line-height: 1.6;
+}
+
+.timeline-icon-bg {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 5rem;
+  color: var(--cor-terciaria);
+  opacity: 0.05;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   /* Esconde navegação desktop e mostra hambúrguer */
@@ -975,5 +1168,87 @@ body::before {
   .social-icon svg {
     width: 26px;
     height: 26px;
+  }
+}
+
+/* Mobile Timeline Override */
+@media (max-width: 768px) {
+  .timeline-section-container {
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+  
+  .timeline-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .timeline {
+    flex-direction: column;
+    gap: 3rem;
+    padding-left: 0; /* Removing padding to align dot at start */
+    padding-bottom: 2rem;
+  }
+  
+  /* Vertical Line */
+  .timeline::before {
+    top: 0;
+    left: 18px; /* Align with dots center (dot width 40, center 20. Line width 4 -> left 18) */
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, 
+      rgba(62, 151, 201, 0.1) 0%, 
+      var(--cor-primaria) 50%, 
+      rgba(62, 151, 201, 0.1) 100%
+    );
+  }
+  
+  .timeline-item {
+    text-align: left;
+    padding-top: 0;
+    padding-left: 60px; /* Space for dot + margin */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .timeline-dot {
+    top: 0;
+    left: 0; 
+    transform: none;
+    margin-top: 5px;
+  }
+
+  .timeline-item:hover .timeline-dot {
+     transform: scale(1.15);
+  }
+  
+  .timeline-content {
+    width: 100%;
+    text-align: left;
+    padding: 1.5rem;
+  }
+  
+  .timeline-year {
+    font-size: 1.5rem;
+  }
+
+  .timeline-content::before {
+    width: 4px;
+    height: 100%;
+  }
+  
+  /* Adjust Home height for mobile to fit content */
+  #home {
+    height: auto !important;
+    min-height: auto;
+    padding-bottom: 4rem;
+  }
+
+  /* Fix Video container height on mobile */
+  #home .animation-container {
+    min-height: auto;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
   }
 }
