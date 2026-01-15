@@ -138,6 +138,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ========================================
+  // TROCA DE VÍDEO RESPONSIVA
+  // ========================================
+  
+  const homeVideo = document.getElementById("homeVideo");
+  const videoSource = document.getElementById("videoSource");
+
+  function updateVideoSource() {
+    if (!homeVideo || !videoSource) return;
+
+    const isMobile = window.innerWidth <= 768;
+    const currentSrc = videoSource.getAttribute("src");
+    const newSrc = isMobile 
+      ? "ASSETS/logo-animada-vertical.mp4" 
+      : "ASSETS/logo-animada2.0.mp4";
+
+    // Só atualiza se a fonte mudar para evitar recarregamentos desnecessários
+    if (currentSrc !== newSrc) {
+      videoSource.setAttribute("src", newSrc);
+      homeVideo.load();
+      // Tenta reproduzir novamente após carregar
+      homeVideo.play().catch(e => console.log("Autoplay preventido pelo navegador:", e));
+    }
+  }
+
+  // Executa inicialmente
+  updateVideoSource();
+
+  // Executa ao redimensionar a tela
+  window.addEventListener("resize", () => {
+    // Debounce simples para não executar excessivamente durante o resize
+    clearTimeout(window.resizeTimer);
+    window.resizeTimer = setTimeout(updateVideoSource, 250);
+  });
+
+  // ========================================
   // CARROSSEL DE PORTFÓLIO
   // ========================================
   

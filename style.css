@@ -91,6 +91,8 @@ body::before {
   border-bottom: 1px solid rgba(62, 151, 201, 0.25);
   padding: 1.5rem 0;
   box-shadow: 0 2px 15px rgba(31, 113, 177, 0.08);
+  position: relative;
+  z-index: 10;
 }
 
 .logo {
@@ -812,22 +814,35 @@ body::before {
 
   /* Seção Home */
   #home {
-    /* Push white further out on mobile to ensure video blends */
+    /* Vertical elliptical gradient for mobile to match vertical video */
+    /* Smoother gradient transition - extended solid white */
     background: radial-gradient(
-      ellipse at center,
+      ellipse at center 40%,
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 1) 70%,
+      rgba(255, 255, 255, 0.8) 90%,
       rgba(255, 255, 255, 0) 100%
     );
+    align-items: flex-start; /* Move content to top */
+    padding-top: 30px; /* Distance from header */
+    flex: 0 0 auto; /* Don't expand to fill available vertical space */
+    min-height: auto; /* Allow height to be determined by content */
+    height: 50%; /* Force height to 50% as requested by user */
+    padding-bottom: 2rem; /* Add some space at the bottom */
   }
 
   .animation-container {
-    padding: 1rem;
+    padding: 0;
+    max-width: 100%;
   }
 
   .home-video {
-    /* Adjust shadow sizing for mobile */
-    box-shadow: 0 0 30px 30px #ffffff;
+    /* Full width on mobile with reduced shadow spread */
+    width: 100%;
+    max-width: 400px; /* Limit width of vertical video so it doesnt get too huge */
+    border-radius: 20px;
+    /* Soften the edge further with larger spread */
+    box-shadow: 0 0 100px 100px #ffffff;
   }
 
   .animation-placeholder {
