@@ -26,6 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const activeSection = document.getElementById(targetSection);
     if (activeSection) {
       activeSection.classList.add("active");
+      
+      // Se a seção for portfólio, redimensiona o carrossel do Flickity
+      if (targetSection === "portfolio") {
+        setTimeout(() => {
+          const carousel = document.querySelector(".carousel");
+          if (carousel) {
+            // Verifica se a instância do Flickity existe
+            const flkty = Flickity.data(carousel);
+            if (flkty) {
+              flkty.resize();
+            }
+          }
+        }, 100); // Pequeno delay para garantir que o CSS display:flex foi aplicado
+      }
     }
 
     // Adiciona 'active' no link correspondente
@@ -126,72 +140,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // ========================================
   // CARROSSEL DE PORTFÓLIO
   // ========================================
+  
+  // Flickity handles the carousel automatically via data-flickity attribute in HTML
+  // No manual JS required for basic functionality
 
-  const carouselTrack = document.querySelector(".carousel-track");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const nextBtn = document.querySelector(".carousel-btn.next");
-  const projectCards = document.querySelectorAll(".project-card");
-
-  if (carouselTrack && projectCards.length > 0) {
-    let currentIndex = 0;
-    let portfolioAutoplayInterval;
-
-    function updateCarousel() {
-      const cardWidth = projectCards[0].offsetWidth;
-      const cardMargin = 20; // 10px de cada lado
-      const totalCardWidth = cardWidth + cardMargin;
-      const offset = -(currentIndex * totalCardWidth);
-
-      carouselTrack.style.transform = `translateX(${offset}px)`;
-
-      if (prevBtn) prevBtn.disabled = currentIndex === 0;
-      if (nextBtn) nextBtn.disabled = currentIndex === projectCards.length - 1;
-    }
-
-    function nextProject() {
-      if (currentIndex < projectCards.length - 1) {
-        currentIndex++;
-      } else {
-        currentIndex = 0;
-      }
-      updateCarousel();
-    }
-
-    function startPortfolioAutoplay() {
-      stopPortfolioAutoplay();
-      portfolioAutoplayInterval = setInterval(nextProject, 5000);
-    }
-
-    function stopPortfolioAutoplay() {
-      clearInterval(portfolioAutoplayInterval);
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener("click", function () {
-        stopPortfolioAutoplay();
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateCarousel();
-        }
-        startPortfolioAutoplay();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener("click", function () {
-        stopPortfolioAutoplay();
-        if (currentIndex < projectCards.length - 1) {
-          currentIndex++;
-          updateCarousel();
-        }
-        startPortfolioAutoplay();
-      });
-    }
-
-    updateCarousel();
-    startPortfolioAutoplay();
-    window.addEventListener("resize", updateCarousel);
-  }
 
   // ========================================
   // AUTOPLAY SCROLL EQUIPE
